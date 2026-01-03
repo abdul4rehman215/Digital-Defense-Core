@@ -1,0 +1,29 @@
+/home/toor/zerotrust-lab
+├── logs
+├── policies
+├── resources
+└── scripts
+
+admin  all        rwx  7200  3
+user   home       rw   3600  2
+guest  public     r    1800  1
+alice  documents  rw   3600  2
+bob    reports    r    1800  1
+
+GRANTED | user=alice | resource=documents | permission=r
+DENIED | user=bob | permission=w | reason=permission_not_allowed
+
+/home/toor/zerotrust-lab/resources/public/readme.txt 644
+/home/toor/zerotrust-lab/resources/private/confidential.txt 640
+/home/toor/zerotrust-lab/resources/restricted/classified.txt 600
+/home/toor/zerotrust-lab/resources/shared/project.txt 664
+
+Test initialization complete
+Policy test passed
+Public access OK
+
+Zero Trust Compliance Report
+Policies: Verified
+Least Privilege: Enforced
+Monitoring: Enabled
+Recommendations: MFA, automated remediation
