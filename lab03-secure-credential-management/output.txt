@@ -1,0 +1,39 @@
+Collecting cryptography
+Collecting bcrypt
+Successfully installed bcrypt-4.1.2 cryptography-42.0.5
+
+Enter password to validate (or exit): weak
+[FAIL] Password too short
+[FAIL] Missing uppercase
+[FAIL] Missing digit
+[FAIL] Missing special char
+[PASS] No weak patterns
+Overall: INVALID
+
+Enter password to validate (or exit): password123
+[PASS] Length OK
+[FAIL] Missing uppercase
+[PASS] Digit OK
+[FAIL] Missing special char
+[FAIL] Weak pattern detected: password
+Overall: INVALID
+
+Enter password to validate (or exit): StrongP@ss1
+[PASS] Length OK
+[PASS] Uppercase OK
+[PASS] Lowercase OK
+[PASS] Digit OK
+[PASS] Special OK
+[PASS] No weak patterns
+Overall: VALID
+
+Generated Passwords:
+X9@qP7L!mD2a
+Y@3WkP7x!8mR
+4Qp@T9L!z2Kc
+
+Credentials Stored:
+['gmail', 'github']
+
+Credential Audit:
+Total events: 0
