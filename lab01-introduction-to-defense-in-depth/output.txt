@@ -1,0 +1,17 @@
+Status: inactive
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+
+-rw-r--r-- 1 root root 2314 /etc/passwd
+-rw-r----- 1 root shadow 1420 /etc/shadow
+-r--r----- 1 root root 1712 /etc/sudoers
+
+security-admins:x:1002:
+security-analysts:x:1003:
+security-users:x:1004:
+
+User testuser created successfully with role analyst
+Audit completed. Report saved to /opt/security/logs/
+Policy enforcement completed successfully
