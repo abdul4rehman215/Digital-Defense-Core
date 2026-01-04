@@ -1,56 +1,62 @@
-# 🧪 Lab 04: Cryptography with Python
+# 🧪 Lab 4: Cryptography with Python
 
 ## 🎯 Objectives
-By the end of this lab, you will be able to:
-- Implement symmetric encryption using AES
-- Implement asymmetric encryption using RSA
-- Compare symmetric vs asymmetric encryption performance
-- Apply cryptographic principles to secure data
-- Implement hybrid encryption combining AES and RSA
+By the end of this lab, students will be able to:
+• Implement symmetric encryption using AES (Advanced Encryption Standard)
+• Create asymmetric encryption using RSA (Rivest–Shamir–Adleman)
+• Compare performance and use cases of symmetric vs asymmetric encryption
+• Apply cryptographic principles to secure data transmission
+• Understand hybrid encryption combining RSA and AES
 
 ---
 
 ## 📋 Prerequisites
-- Basic Python programming (functions, classes, file I/O)
-- Linux command line familiarity
-- Understanding of encryption and decryption concepts
+• Basic Python programming (functions, classes, file I/O)
+• Linux command line familiarity
+• Understanding of encryption and decryption concepts
+• Access to a terminal environment
 
 ---
 
 ## 🖥️ Lab Environment
-- Ubuntu 24.04 LTS (cloud lab environment)
-- Python 3.x
-- cryptography Python library
+Pre-configured Ubuntu 24.04 LTS cloud-based Linux environment with Python 3 and required tools installed.
+
+Shell Prompt:
+toor@ip-172-31-10-266:~$
 
 ---
 
-## 🧩 Tasks Performed
+## 🧩 Tasks Covered
 
-### Task 1: AES Symmetric Encryption
-- Random AES key generation
-- Password-derived key using PBKDF2
-- Encryption and decryption of messages
-- Saving and loading AES keys securely
+### Task 1: Implementing AES Symmetric Encryption
+• Environment setup  
+• AES key generation  
+• Password-based key derivation using PBKDF2  
+• Encryption and decryption  
+• Saving and loading AES keys  
 
-### Task 2: RSA Asymmetric Encryption
-- RSA public/private key generation
-- Encryption and decryption
-- Digital signature creation and verification
-- Detection of message tampering
+### Task 2: Implementing RSA Asymmetric Encryption
+• RSA public/private key generation  
+• Encryption and decryption  
+• Digital signature creation and verification  
+• Detection of tampered messages  
 
-### Task 3: Encryption Performance Comparison
-- Benchmarked AES vs RSA
-- Measured encryption/decryption time
-- Compared ciphertext sizes
-- Identified real-world use cases
+### Task 3: Comparing Encryption Methods
+• Performance benchmarking of AES and RSA  
+• Ciphertext size comparison  
+• Use-case recommendations  
 
-### Task 4: Hybrid Encryption
-- AES used for bulk data encryption
-- RSA used for AES key protection
-- Simulated real-world TLS-style encryption
+### Task 4: Hybrid Encryption Implementation
+• AES for bulk data encryption  
+• RSA for securing AES keys  
+• Real-world hybrid encryption workflow  
 
 ---
 
 ## 🏁 Conclusion
-This lab demonstrated industry-standard cryptographic techniques using Python.  
-AES provides fast bulk encryption, RSA enables secure key exchange and identity verification, and hybrid encryption combines both for real-world secure systems such as TLS/SSL.
+This lab demonstrated core cryptographic principles using Python:
+• AES (symmetric) for fast bulk encryption
+• RSA (asymmetric) for secure key exchange and signatures
+• Hybrid encryption combining both approaches
+
+These techniques form the foundation of TLS/SSL, PGP, secure messaging, and enterprise encryption systems.
