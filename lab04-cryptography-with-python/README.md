@@ -2,19 +2,19 @@
 
 ## 🎯 Objectives
 By the end of this lab, students will be able to:
-• Implement symmetric encryption using AES (Advanced Encryption Standard)
-• Create asymmetric encryption using RSA (Rivest–Shamir–Adleman)
-• Compare performance and use cases of symmetric vs asymmetric encryption
-• Apply cryptographic principles to secure data transmission
-• Understand hybrid encryption combining RSA and AES
+- Implement symmetric encryption using AES (Advanced Encryption Standard)
+- Create asymmetric encryption using RSA (Rivest–Shamir–Adleman)
+- Compare performance and use cases of symmetric vs asymmetric encryption
+- Apply cryptographic principles to secure data transmission
+- Understand hybrid encryption combining RSA and AES
 
 ---
 
 ## 📋 Prerequisites
-• Basic Python programming (functions, classes, file I/O)
-• Linux command line familiarity
-• Understanding of encryption and decryption concepts
-• Access to a terminal environment
+- Basic Python programming (functions, classes, file I/O)
+- Linux command line familiarity
+- Understanding of encryption and decryption concepts
+- Access to a terminal environment
 
 ---
 
@@ -55,8 +55,8 @@ toor@ip-172-31-10-266:~$
 
 ## 🏁 Conclusion
 This lab demonstrated core cryptographic principles using Python:
-• AES (symmetric) for fast bulk encryption
-• RSA (asymmetric) for secure key exchange and signatures
-• Hybrid encryption combining both approaches
+- AES (symmetric) for fast bulk encryption
+- RSA (asymmetric) for secure key exchange and signatures
+- Hybrid encryption combining both approaches
 
 These techniques form the foundation of TLS/SSL, PGP, secure messaging, and enterprise encryption systems.
