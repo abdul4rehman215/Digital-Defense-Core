@@ -1,0 +1,87 @@
+========================================
+Lab 4: Cryptography with Python
+System: Ubuntu 24.04 LTS
+User: toor
+========================================
+
+--- Task 1: AES Symmetric Encryption ---
+
+$ python3 aes_crypto.py
+
+=== AES Encryption Demo ===
+
+[*] Generating random AES key...
+Original : This is a secret AES message
+Encrypted: b'gAAAAABlZ9F4Zx1vJ6Pp9gHn0lHk9d8ZVnJmGJ5v...'
+Decrypted: This is a secret AES message
+
+[*] Testing password-based key derivation...
+Password-based encryption successful
+
+[*] Saving and loading AES key...
+Decrypted with loaded key: This is a secret AES message
+
+=== Demo Complete ===
+
+Observed behavior:
+- AES key generation successful
+- Ciphertext unreadable
+- Decryption restores original plaintext
+- Password-derived key works
+- Key save/load functions correctly
+
+
+--- Task 2: RSA Asymmetric Encryption ---
+
+$ python3 rsa_crypto.py
+
+=== RSA Encryption Demo ===
+
+Original : RSA secret message
+Decrypted: RSA secret message
+Signature valid: True
+Tampered signature valid: False
+
+Keys loaded successfully
+
+=== Demo Complete ===
+
+
+--- Task 3: Encryption Performance Comparison ---
+
+$ python3 crypto_compare.py
+
+=== Encryption Method Comparison ===
+
+AES Results:
+Encryption time: 0.000214s
+Decryption time: 0.000162s
+Ciphertext size: 6752 bytes
+
+RSA Results:
+Encryption time: 0.003841s
+Decryption time: 0.005217s
+Ciphertext size: 256 bytes
+
+Use Case Recommendations:
+- AES: Large data, fast performance
+- RSA: Small data, key exchange, signatures
+- Hybrid: Real-world secure communication
+
+
+--- Task 4: Hybrid Encryption ---
+
+$ python3 hybrid_crypto.py
+
+=== Hybrid Encryption Demo ===
+
+Original message length : 3600
+Encrypted message length: 4824
+Decryption successful  : True
+
+Advantages of Hybrid Encryption:
+- RSA secures AES key
+- AES encrypts large data efficiently
+- Used in TLS/SSL and secure messaging
+
+=== Demo Complete ===
