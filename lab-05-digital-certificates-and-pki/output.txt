@@ -1,0 +1,91 @@
+Generating RSA private key, 2048 bit long modulus
+.............................................................................+
+.....................................................+
+e is 65537 (0x010001)
+
+Signature ok
+subject=C = US, ST = Your State, L = Your City, O = Test Organization, OU = IT Department, CN = localhost, emailAddress = admin@test.com
+Getting Private key
+
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            4c:7a:91:bb:29:fd:12:88
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, ST = Your State, L = Your City, O = Test Organization, OU = IT Department, CN = localhost
+        Validity
+            Not Before: Aug 18 12:30:14 2026 GMT
+            Not After : Aug 18 12:30:14 2027 GMT
+        Subject: C = US, ST = Your State, L = Your City, O = Test Organization, OU = IT Department, CN = localhost
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+
+ca_signed_server.crt: OK
+
+PKI Certificate Verification Tool
+==================================================
+
+=== CA Certificate Information ===
+Subject: CN=Test Root CA,OU=Certificate Authority,O=Test CA Organization,L=Your City,ST=Your State,C=US
+Issuer : CN=Test Root CA,OU=Certificate Authority,O=Test CA Organization,L=Your City,ST=Your State,C=US
+Valid From: 2026-08-18 12:40:11
+Valid Until: 2036-08-16 12:40:11
+Status: VALID
+Serial Number: 51238901293812
+Public Key Type: _RSAPublicKey
+
+=== CA-Signed Server Certificate Information ===
+Subject: CN=testserver.local,OU=Web Services,O=Test Server Organization,L=Your City,ST=Your State,C=US
+Issuer : CN=Test Root CA,OU=Certificate Authority,O=Test CA Organization,L=Your City,ST=Your State,C=US
+Valid From: 2026-08-18 12:45:22
+Valid Until: 2027-08-18 12:45:22
+Status: VALID
+Serial Number: 982173981723
+Public Key Type: _RSAPublicKey
+
+=== Self-Signed Server Certificate Information ===
+Subject: CN=localhost,OU=IT Department,O=Test Organization,L=Your City,ST=Your State,C=US
+Issuer : CN=localhost,OU=IT Department,O=Test Organization,L=Your City,ST=Your State,C=US
+Valid From: 2026-08-18 12:30:14
+Valid Until: 2027-08-18 12:30:14
+Status: VALID
+Serial Number: 839128391283
+Public Key Type: _RSAPublicKey
+
+=== Certificate Chain Verification ===
+Certificate successfully verified by CA
+
+Testing self-signed cert against CA (expected failure)
+=== Certificate Chain Verification ===
+Issuer mismatch – verification failed
+
+Digital Signature Demonstration
+========================================
+Signature (Base64): mH5Cw7xvY9Q4+YyX...
+Verification (original): True
+Verification (tampered): False
+
+Certificate Expiration Monitor
+========================================
+{'file': 'server_cert.crt', 'cn': 'localhost', 'expires': datetime.datetime(2027, 8, 18, 12, 30, 14), 'days_left': 364, 'status': 'OK'}
+{'file': 'ca_cert.crt', 'cn': 'Test Root CA', 'expires': datetime.datetime(2036, 8, 16, 12, 40, 11), 'days_left': 3650, 'status': 'OK'}
+{'file': 'ca_signed_server.crt', 'cn': 'testserver.local', 'expires': datetime.datetime(2027, 8, 18, 12, 45, 22), 'days_left': 365, 'status': 'OK'}
+
+Summary:
+Total: 3
+Expired: 0
+Warning: 0
+OK: 3
+
+end_entity.crt: OK
+
+Multi-Level Certificate Chain Verification
+==================================================
+Verifying Root → Intermediate link...
+Issuer match: OK
+Verifying Intermediate → End Entity link...
+Issuer match: OK
+
+Overall chain valid: True
