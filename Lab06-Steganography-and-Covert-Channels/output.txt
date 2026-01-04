@@ -1,0 +1,44 @@
+Requirement already satisfied: Pillow in /home/toor/.local/lib/python3.12/site-packages
+Requirement already satisfied: numpy in /home/toor/.local/lib/python3.12/site-packages
+Requirement already satisfied: matplotlib in /home/toor/.local/lib/python3.12/site-packages
+
+Test images created successfully!
+
+-rw-r--r-- 1 toor toor 351K blue_image.png
+-rw-r--r-- 1 toor toor 352K test_image.png
+
+Original pixel: 170 = 10101010
+Message bit to hide: 1
+Modified pixel: 171 = 10101011
+Difference: 1
+Extracted bit: 1
+Match: True
+
+Message successfully hidden in hidden.png
+Extracted message: Secret message!
+
+Image: test_image.png
+Resolution: 400x300
+Max hidden characters: 44990
+
+Message successfully hidden in secure.png
+Extracted message: Secret!
+Extracted message: @7��K�
+
+=== Steganography Detection Analysis ===
+Chi-square value: 12.47
+Likely clean
+LSB entropy: 0.997
+LSB visualization saved as lsb_visualization.png
+
+=== Steganography Detection Analysis ===
+Chi-square value: 1.92
+Suspicious
+LSB entropy: 0.999
+LSB visualization saved as lsb_visualization.png
+
+Image Analysis Report
+- test_image.png: Review recommended
+- blue_image.png: Review recommended
+- hidden.png: Review recommended
+- secure.png: Review recommended
