@@ -1,0 +1,176 @@
+----------------------------------------
+Fail2Ban Installation & Service Status
+----------------------------------------
+
+● fail2ban.service - Fail2Ban Service
+   Loaded: loaded (/lib/systemd/system/fail2ban.service; enabled)
+   Active: active (running)
+   Docs: man:fail2ban(1)
+
+----------------------------------------
+Fail2Ban Global Status
+----------------------------------------
+
+Status
+|- Number of jail:      1
+`- Jail list:           sshd
+
+----------------------------------------
+Fail2Ban SSH Jail Status (Initial)
+----------------------------------------
+
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed: 0
+|  `- Total failed:     0
+|- Actions
+|  |- Currently banned: 0
+|  `- Total banned:     0
+
+----------------------------------------
+Fail2Ban Test Script Output
+----------------------------------------
+
+Testing Fail2Ban - This will generate failed login attempts
+
+Current banned IPs:
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed: 0
+|- Actions
+|  |- Currently banned: 0
+
+Test entries added to auth.log
+
+Updated banned IPs:
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed: 0
+|- Actions
+|  |- Currently banned: 1
+|  `- Banned IP list:   192.168.100.100
+
+----------------------------------------
+UFW Initial Status
+----------------------------------------
+
+Status: inactive
+
+----------------------------------------
+UFW Enabled
+----------------------------------------
+
+Firewall is active and enabled on system startup
+
+----------------------------------------
+UFW Default Policies
+----------------------------------------
+
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing)
+
+----------------------------------------
+UFW Rules Applied
+----------------------------------------
+
+[ 1] 22/tcp                     ALLOW IN    Anywhere
+[ 2] 80/tcp                     ALLOW IN    Anywhere
+[ 3] 443/tcp                    ALLOW IN    Anywhere
+[ 4] 192.168.1.100              ALLOW IN    Anywhere
+[ 5] 203.0.113.100              DENY IN     Anywhere
+
+----------------------------------------
+Firewall Test Script Output
+----------------------------------------
+
+=== UFW Firewall Status ===
+[ 1] 22/tcp ALLOW IN Anywhere
+[ 2] 80/tcp ALLOW IN Anywhere
+[ 3] 443/tcp ALLOW IN Anywhere
+
+=== Testing Network Connectivity ===
+HTTP/1.1 301 Moved Permanently
+HTTP/2 200
+
+=== Current Network Connections ===
+Proto Local Address   State
+tcp   0.0.0.0:22      LISTEN
+tcp   0.0.0.0:80      LISTEN
+
+----------------------------------------
+Fail2Ban + UFW Monitoring Dashboard
+----------------------------------------
+
+=== Security Monitoring Dashboard ===
+Generated on: Tue Jan 6 22:41:32 UTC 2026
+
+=== Fail2Ban Status ===
+Status
+|- Number of jail:      1
+`- Jail list:           sshd
+
+=== Currently Banned IPs (SSH Jail) ===
+Banned IP list:
+192.168.100.100
+
+=== Recent Authentication Failures ===
+sshd[12345]: Failed password for testuser from 192.168.100.100 port 22
+sshd[12346]: Failed password for testuser from 192.168.100.100 port 22
+sshd[12347]: Failed password for testuser from 192.168.100.100 port 22
+
+=== UFW Firewall Status ===
+[ 1] 22/tcp ALLOW IN Anywhere
+[ 2] 80/tcp ALLOW IN Anywhere
+[ 3] 443/tcp ALLOW IN Anywhere
+
+=== Recent UFW Blocks ===
+UFW BLOCK IN=ens5 SRC=203.0.113.100 DST=172.31.10.198 PROTO=TCP DPT=22
+
+=== System Resource Usage ===
+Memory:
+               total        used        free
+Mem:           3.8Gi       1.1Gi       2.7Gi
+
+Disk:
+/dev/root       40G        12G         26G
+
+=== Active Listening Services ===
+tcp   0.0.0.0:22     LISTEN
+tcp   0.0.0.0:80     LISTEN
+
+----------------------------------------
+Security Check Script Output
+----------------------------------------
+
+=== Comprehensive Security Check ===
+Timestamp: Tue Jan 6 22:44:11 UTC 2026
+
+✓ Fail2Ban is running
+Active jails: sshd
+
+✓ UFW is active
+Active rules: 3
+
+Recent failed login attempts: 0
+
+Open Network Ports:
+0.0.0.0:22
+0.0.0.0:80
+0.0.0.0:443
+
+Available updates: 2
+
+----------------------------------------
+Final Verification Script Output
+----------------------------------------
+
+=== Final Lab Verification ===
+
+✓ PASS: Fail2Ban is running
+✓ PASS: UFW is active
+✓ PASS: SSH rule exists
+✓ PASS: jail.local exists
+✓ PASS: auth.log accessible
+
+=== Verification Complete ===
