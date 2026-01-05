@@ -1,0 +1,136 @@
+========================================
+Apache Installation & SSL Enablement
+========================================
+
+Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [110 kB]
+Fetched 110 kB in 1s
+Reading package lists... Done
+
+apache2 is already the newest version (2.4.58-1ubuntu1).
+0 upgraded, 0 newly installed, 0 to remove.
+
+Enabling module ssl.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
+
+Enabling site default-ssl.
+To activate the new configuration, you need to run:
+  systemctl reload apache2
+
+========================================
+Apache Listening Ports Verification
+========================================
+
+tcp6       0      0 :::80                   :::*        LISTEN      1243/apache2
+tcp6       0      0 :::443                  :::*        LISTEN      1243/apache2
+
+========================================
+SSL Certificate Generation
+========================================
+
+Generating a RSA private key
+................................................+++++
+........................................+++++
+writing new private key to '/etc/apache2/ssl/apache-selfsigned.key'
+-----
+
+========================================
+SSL Directory Verification
+========================================
+
+-rw-r--r-- 1 root root 1294 apache-selfsigned.crt
+-rw------- 1 root root 1704 apache-selfsigned.key
+
+========================================
+Apache SSL Configuration Test
+========================================
+
+Syntax OK
+
+========================================
+HTTPS Test Page Verification
+========================================
+
+<h1>SSL Configuration Successful</h1>
+<p>This page is served over HTTPS with TLS encryption.</p>
+
+========================================
+PHP Installation & Apache Restart
+========================================
+
+Setting up php (2:8.3+92ubuntu1) ...
+Setting up libapache2-mod-php (2:8.3+92ubuntu1) ...
+apache2 restarted successfully
+
+========================================
+XSS Payload Browser Test (Vulnerable App)
+========================================
+
+JavaScript alert popup triggered:
+"XSS"
+
+========================================
+XSS Detector Script Output
+========================================
+
+Malicious: True
+Detected patterns: ['<\\s*script.*?>']
+Risk level: LOW
+
+========================================
+XSS Detection Log File
+========================================
+
+2026-01-06 14:22:01.443812 | <script>alert('XSS')</script> | (True, ['<\\s*script.*?>'], 'LOW')
+
+========================================
+XSS Protector Script Output
+========================================
+
+Input: Normal text
+Encoded: Normal text
+Stripped: Normal text
+
+Input: <script>alert('XSS')</script>
+Encoded: &lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;
+Stripped: 
+
+Input: <img src=x onerror=alert(1)>
+Encoded: &lt;img src=x onerror=alert(1)&gt;
+Stripped: <img src=x >
+
+Input: <b>Bold</b> text
+Encoded: &lt;b&gt;Bold&lt;/b&gt; text
+Stripped: <b>Bold</b> text
+
+========================================
+Secure Application Browser Test Results
+========================================
+
+Warning displayed:
+"Malicious content detected and sanitized."
+
+Rendered Output:
+User: &lt;script&gt;alert(&#039;XSS&#039;)&lt;/script&gt;
+Comment: &lt;script&gt;alert(&#039;XSS&#039;)&lt;/script&gt;
+
+========================================
+XSS Payload Test Matrix Results
+========================================
+
+Payload: <script>alert('XSS')</script>
+Vulnerable: Executed
+Secure: Sanitized
+
+Payload: <img src=x onerror=alert(1)>
+Vulnerable: Executed
+Secure: Blocked
+
+Payload: <iframe src="javascript:alert('XSS')"></iframe>
+Vulnerable: Executed
+Secure: Removed
+
+Payload: javascript:alert(document.cookie)
+Vulnerable: Executed
+Secure: Neutralized
