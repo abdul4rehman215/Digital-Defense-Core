@@ -1,0 +1,184 @@
+=== Initial Network State ===
+
+Network Interfaces:
+lo: <LOOPBACK,UP,LOWER_UP>
+    inet 127.0.0.1/8 scope host lo
+
+ens5: <BROADCAST,MULTICAST,UP,LOWER_UP>
+    inet 172.31.10.198/20 brd 172.31.15.255 scope global ens5
+
+Routing Table:
+default via 172.31.0.1 dev ens5
+172.31.0.0/20 dev ens5 proto kernel scope link src 172.31.10.198
+
+iptables (initial):
+Chain INPUT (policy ACCEPT)
+Chain FORWARD (policy ACCEPT)
+Chain OUTPUT (policy ACCEPT)
+
+Open ports:
+tcp 0.0.0.0:22 LISTEN
+udp 0.0.0.0:68
+
+Observation:
+Flat network detected
+No segmentation
+No filtering rules applied
+
+========================================
+=== Virtual Network Interfaces Created ===
+
+dmz0:
+    inet 192.168.10.1/24
+    state UP
+
+internal0:
+    inet 192.168.20.1/24
+    state UP
+
+mgmt0:
+    inet 192.168.30.1/24
+    state UP
+
+Result:
+Three logical zones created:
+- DMZ
+- Internal
+- Management
+
+========================================
+=== IP Forwarding ===
+
+sysctl result:
+net.ipv4.ip_forward = 1
+
+Verification:
+/proc/sys/net/ipv4/ip_forward = 1
+
+Status:
+IP forwarding ENABLED
+
+========================================
+=== iptables Segmentation Rules Applied ===
+
+FORWARD chain rules (summary):
+ACCEPT  tcp  192.168.20.0/24 → 192.168.10.0/24  dpt:80
+ACCEPT  tcp  192.168.20.0/24 → 192.168.10.0/24  dpt:443
+ACCEPT  tcp  192.168.30.0/24 → 192.168.10.0/24  dpt:22
+DROP    all  192.168.10.0/24 → 192.168.20.0/24
+ACCEPT  all  192.168.30.0/24 → any
+DROP    all  any → 192.168.30.0/24
+LOG     all  any → any  prefix "DROPPED:"
+
+Default policies:
+INPUT   DROP
+FORWARD DROP
+OUTPUT  ACCEPT
+
+========================================
+=== Segmentation Test Logs ===
+
+HTTP_TO_DMZ:
+SRC=192.168.20.5 DST=192.168.10.10 PROTO=TCP DPT=80
+
+MGMT_TO_DMZ_SSH:
+SRC=192.168.30.5 DST=192.168.10.10 PROTO=TCP DPT=22
+
+DMZ_TO_INTERNAL:
+SRC=192.168.10.5 DST=192.168.20.10 PROTO=TCP
+ACTION=DROP
+
+Kernel log excerpt:
+FORWARD_DROP SRC=192.168.10.5 DST=192.168.20.10
+FORWARD_DROP SRC=192.168.10.8 DST=192.168.20.15
+FORWARD_DROP SRC=192.168.10.3 DST=192.168.20.7
+
+========================================
+=== Automated Network Setup Script ===
+
+[INFO] Starting Automated Network Architecture Setup
+[INFO] Backing up iptables rules to /tmp/iptables_backup_20260105.rules
+[INFO] Creating virtual interfaces
+[INFO] dmz0 created
+[INFO] internal0 created
+[INFO] mgmt0 created
+[INFO] Enabling IP forwarding
+[INFO] Applying iptables segmentation rules
+[INFO] Creating monitoring script
+[INFO] Creating cleanup script
+[INFO] Setup completed successfully
+
+========================================
+=== Validation Script Results ===
+
+[TEST] Checking virtual network interfaces
+[PASS] dmz0 present
+[PASS] internal0 present
+[PASS] mgmt0 present
+
+[TEST] Checking IP forwarding
+[PASS] IP forwarding enabled
+
+[TEST] Checking iptables rules
+[PASS] Rules detected in FORWARD chain
+
+[TEST] Checking segmentation rules
+[PASS] DMZ rules present
+[PASS] Internal rules present
+[PASS] Management rules present
+
+[TEST] Checking logging configuration
+[PASS] LOG rules detected
+
+Validation Summary:
+Tests passed: 5/5
+Result: NETWORK ARCHITECTURE VALID
+
+========================================
+=== Network Monitoring Snapshot ===
+
+Active Interfaces:
+dmz0        192.168.10.1     UP
+internal0   192.168.20.1     UP
+mgmt0       192.168.30.1     UP
+
+Firewall Statistics:
+INPUT rules:   6
+FORWARD rules: 14
+OUTPUT rules:  1
+
+Active connections:
+2 ESTABLISHED
+
+Listening services:
+SSH (22)
+DHCP (68)
+
+Recent security events:
+FORWARD_DROP SRC=192.168.10.8 DST=192.168.20.15
+FORWARD_DROP SRC=192.168.10.3 DST=192.168.20.7
+
+========================================
+=== Cleanup Script Execution ===
+
+Removing dmz0 interface
+Removing internal0 interface
+Removing mgmt0 interface
+Flushing iptables rules
+Resetting default policies
+
+Cleanup status:
+SUCCESS
+
+========================================
+=== Final State ===
+
+Virtual interfaces:
+NOT PRESENT
+
+iptables policies:
+INPUT   ACCEPT
+FORWARD ACCEPT
+OUTPUT  ACCEPT
+
+System restored to pre-lab state
