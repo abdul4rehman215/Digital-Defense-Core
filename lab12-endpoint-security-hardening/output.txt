@@ -1,0 +1,74 @@
+Generating public/private rsa key pair.
+Your identification has been saved in /home/cloud-lab-user/.ssh/id_rsa
+Your public key has been saved in /home/cloud-lab-user/.ssh/id_rsa.pub
+
+total 16
+drwx------ 2 cloud-lab-user cloud-lab-user 4096 Jan 12 21:10 .
+-rw------- 1 cloud-lab-user cloud-lab-user 3381 Jan 12 21:10 id_rsa
+-rw-r--r-- 1 cloud-lab-user cloud-lab-user  742 Jan 12 21:10 id_rsa.pub
+
+● ssh.service - OpenBSD Secure Shell server
+     Active: active (running)
+     Listening on 0.0.0.0:2222
+
+Setting up fail2ban (1.0.2-1ubuntu1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/fail2ban.service
+
+● fail2ban.service - Fail2Ban Service
+     Active: active (running)
+
+Status
+|- Number of jail: 1
+`- Jail list: sshd
+
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed: 0
+|  |- Total failed: 0
+|- Actions
+   |- Currently banned: 0
+   |- Total banned: 0
+
+Server ready
+
+Checking for failed SSH login attempts...
+Normal activity: 0 failed attempts in the last hour
+
+INFO: 1 successful SSH logins in the last hour
+
+Normal sudo usage: 2 attempts today
+System load normal: 0.25
+Disk usage normal: 37%
+
+Firewall is active and enabled on system startup
+
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing)
+
+2222/tcp                   ALLOW IN    Anywhere
+2222/tcp (v6)              ALLOW IN    Anywhere (v6)
+
+Creating file integrity baseline...
+Baseline created at /home/cloud-lab-user/security-scripts/file-baseline.txt
+
+File integrity check passed - no changes detected
+
+● ssh.service - Active: active (running)
+● fail2ban.service - Active: active (running)
+Status: active
+
+security-check.sh
+ssh-monitor.sh
+system-monitor.sh
+file-integrity.sh
+ssh-alerts.log
+system-alerts.log
+security-master.log
+file-baseline.txt
+integrity-alerts.log
+
+=== Security Check Started ===
+Running SSH Monitor...
+Running System Monitor...
+=== Security Check Completed ===
