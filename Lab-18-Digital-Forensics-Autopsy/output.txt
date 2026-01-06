@@ -8,15 +8,20 @@ Autopsy Version: 4.20.0
 mkfs.fat 4.2 (2021-01-31)
 
 Filesystem mounted successfully
+Files created successfully
+Deleted file simulated
 
-Deleted file created and removed
+MD5 hash generated
+SHA256 hash generated
 
-MD5 Hash generated
-SHA256 Hash generated
+Autopsy running on http://localhost:9999
+Evidence ingested successfully
+Hashes matched inside Autopsy
 
-Deleted file recovered in Autopsy
 Hidden file detected
-Timeline reconstructed successfully
+Deleted file recovered
+Timeline generated
 
 Final hash verification:
-(no differences found)
+(no output)
+Integrity preserved
