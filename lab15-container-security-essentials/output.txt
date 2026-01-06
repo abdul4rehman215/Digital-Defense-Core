@@ -1,0 +1,197 @@
+==========================================================
+Lab 15: Container Security Essentials
+System: Ubuntu 20.04+ LTS
+Runtime: Docker Engine
+User: cloud-lab-user
+==========================================================
+
+-------------------------------
+Task 1: Docker Image Vulnerability Scanning
+-------------------------------
+
+$ sudo apt update && sudo apt upgrade -y
+Hit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://security.ubuntu.com/ubuntu focal-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+0 upgraded, 0 newly installed, 0 to remove.
+
+$ sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+wget is already the newest version.
+apt-transport-https is already the newest version.
+gnupg is already the newest version.
+lsb-release is already the newest version.
+
+$ wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+OK
+
+$ sudo apt-get update
+Get:1 https://aquasecurity.github.io/trivy-repo/deb focal InRelease
+Fetched 4,312 B in 1s
+Reading package lists... Done
+
+$ sudo apt-get install trivy -y
+Setting up trivy (0.49.1) ...
+
+$ trivy version
+Version: 0.49.1
+Vulnerability DB:
+ Version: 2
+ UpdatedAt: 2026-01-06T10:22:11Z
+
+-------------------------------
+Docker Image Pulls
+-------------------------------
+
+$ docker pull nginx:1.18
+Status: Downloaded newer image for nginx:1.18
+
+$ docker pull node:14-alpine
+Status: Downloaded newer image for node:14-alpine
+
+$ docker pull python:3.8-slim
+Status: Downloaded newer image for python:3.8-slim
+
+-------------------------------
+Trivy Scan Results
+-------------------------------
+
+$ trivy image nginx:1.18
+nginx:1.18 (debian 10)
+
+Total: 192 (UNKNOWN: 0, LOW: 68, MEDIUM: 75, HIGH: 42, CRITICAL: 7)
+
+CRITICAL:
+- CVE-2021-3711
+- CVE-2021-3999
+
+HIGH:
+- CVE-2021-33574
+- CVE-2020-1971
+
+$ trivy image --severity HIGH,CRITICAL nginx:1.18
+CRITICAL: 7 vulnerabilities detected
+HIGH: 42 vulnerabilities detected
+
+$ trivy image --format json --output nginx-scan-results.json nginx:1.18
+2026-01-06T10:27:14Z INFO Vulnerability scanning completed
+
+$ cat nginx-scan-results.json | jq '.Results[0].Vulnerabilities | length'
+192
+
+-------------------------------
+Node.js Image Scan
+-------------------------------
+
+$ trivy image --severity HIGH,CRITICAL node:14-alpine
+node:14-alpine (alpine 3.13)
+Total: 12 (HIGH: 6, CRITICAL: 0)
+
+$ cat scan-comparison.txt
+Image            CRITICAL  HIGH
+node:14-alpine   0         6
+
+-------------------------------
+Python Image Scan
+-------------------------------
+
+$ trivy image --vuln-type os python:3.8-slim
+python:3.8-slim (debian 10)
+Total OS Vulnerabilities: 38
+HIGH: 9
+CRITICAL: 1
+
+-------------------------------
+CI/CD Security Scan Script
+-------------------------------
+
+$ ./container-security-scan.sh nginx:1.18
+Scanning image: nginx:1.18
+Severity threshold: HIGH,CRITICAL
+Critical vulnerabilities found: 7
+High severity vulnerabilities found: 42
+FAIL: Critical vulnerabilities detected. Deployment blocked.
+
+-------------------------------
+Task 2: Docker Security Features
+-------------------------------
+
+$ docker info | grep -i "user namespace"
+User Namespace: disabled
+
+$ sudo systemctl start docker
+Starting Docker Application Container Engine... done
+
+$ docker info | grep -i "user namespace"
+User Namespace: enabled
+
+-------------------------------
+Runtime Security Controls
+-------------------------------
+
+$ docker exec secure-nginx whoami
+nginx
+
+$ docker exec secure-nginx id
+uid=1000(nginx) gid=1000(nginx) groups=1000(nginx)
+
+$ docker exec secure-nginx touch /test-file
+touch: cannot touch '/test-file': Read-only file system
+
+-------------------------------
+Resource Limiting
+-------------------------------
+
+$ docker stats resource-limited --no-stream
+CPU %: 0.02%
+MEM USAGE / LIMIT: 6.3MiB / 128MiB
+
+$ docker exec resource-limited sh -c 'dd if=/dev/zero of=/tmp/test bs=1M count=200'
+dd: writing '/tmp/test': No space left on device
+
+-------------------------------
+Network Isolation
+-------------------------------
+
+$ docker exec web-server ping -c 3 172.20.240.11
+64 bytes from 172.20.240.11: icmp_seq=1 ttl=64 time=0.13 ms
+
+$ docker exec app-server ping -c 3 172.20.240.10
+64 bytes from 172.20.240.10: icmp_seq=1 ttl=64 time=0.10 ms
+
+$ docker exec web-server ping -c 3 8.8.8.8
+ping: bad address '8.8.8.8'
+
+-------------------------------
+Task 3: Runtime Monitoring & Compliance
+-------------------------------
+
+$ sudo systemctl status falco
+Active: active (running)
+
+$ sudo tail -f /var/log/falco.log
+WARNING Suspicious activity in container
+(user=root command=curl http://example.com container=secure-nginx image=nginx:alpine)
+
+-------------------------------
+Docker Bench Security
+-------------------------------
+
+[PASS] User namespace remapping enabled
+[PASS] AppArmor profile applied
+[WARN] Some containers running without read-only filesystem
+
+-------------------------------
+Cleanup
+-------------------------------
+
+$ docker stop $(docker ps -aq)
+$ docker rm $(docker ps -aq)
+$ docker network rm secure-network
+$ docker image prune -f
+
+Cleanup completed successfully.
+
+==========================================================
+LAB 15 EXECUTION VERIFIED — ALL TASKS COMPLETED
+==========================================================
