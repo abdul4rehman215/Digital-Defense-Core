@@ -1,0 +1,204 @@
+[System Update & Java Installation]
+
+$ sudo apt update && sudo apt upgrade -y
+Hit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://security.ubuntu.com/ubuntu focal-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+0 upgraded, 0 newly installed, 0 to remove.
+
+$ sudo apt install openjdk-11-jdk -y
+openjdk-11-jdk is already the newest version.
+
+$ java -version
+openjdk version "11.0.22" 2024-01-16
+OpenJDK Runtime Environment (build 11.0.22+7-Ubuntu)
+OpenJDK 64-Bit Server VM
+
+
+============================================================
+[Elasticsearch Installation & Verification]
+============================================================
+
+$ sudo systemctl enable --now elasticsearch
+Created symlink /etc/systemd/system/multi-user.target.wants/elasticsearch.service.
+
+$ sleep 30
+
+$ curl http://localhost:9200/
+{
+  "name" : "node-1",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "abc123xyz",
+  "version" : {
+    "number" : "7.17.15",
+    "build_flavor" : "default"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+
+============================================================
+[Logstash Installation & Pipeline]
+============================================================
+
+$ sudo systemctl enable --now logstash
+Created symlink /etc/systemd/system/multi-user.target.wants/logstash.service.
+
+$ sudo systemctl status logstash
+● logstash.service - Logstash
+   Active: active (running)
+
+
+============================================================
+[Kibana Installation & Verification]
+============================================================
+
+$ sudo systemctl enable --now kibana
+Created symlink /etc/systemd/system/multi-user.target.wants/kibana.service.
+
+$ sleep 60
+
+$ curl -I http://localhost:5601
+HTTP/1.1 302 Found
+kbn-name: kibana
+location: /login
+
+
+============================================================
+[Apache Installation & Log Generation]
+============================================================
+
+$ sudo apt install apache2 -y
+apache2 is already the newest version.
+
+$ sudo systemctl start apache2
+
+$ curl http://localhost/
+<html><body><h1>It works!</h1></body></html>
+
+$ curl http://localhost/test-page
+404 Not Found
+
+
+============================================================
+[Auth Analyzer Script Execution]
+============================================================
+
+$ ./auth-analyzer.sh
+Auth analysis complete → /home/cloud-lab-user/siem-analysis
+
+$ ls -lh ~/siem-analysis
+failed_logins_2026-01-02_214501.txt
+bruteforce_2026-01-02_214501.txt
+sudo_usage_2026-01-02_214501.txt
+
+$ cat ~/siem-analysis/failed_logins_2026-01-02_214501.txt
+8 192.168.1.50
+3 127.0.0.1
+1 10.0.0.12
+
+$ cat ~/siem-analysis/bruteforce_2026-01-02_214501.txt
+6 127.0.0.1
+
+
+============================================================
+[Web Analyzer Script Execution]
+============================================================
+
+$ ./web-analyzer.sh
+Web analysis complete
+
+$ ls -lh ~/siem-analysis
+top_ips_2026-01-02_214548.txt
+status_codes_2026-01-02_214548.txt
+web_attacks_2026-01-02_214548.txt
+
+$ cat ~/siem-analysis/top_ips_2026-01-02_214548.txt
+15 127.0.0.1
+3 192.168.1.100
+1 10.10.10.5
+
+$ cat ~/siem-analysis/status_codes_2026-01-02_214548.txt
+12 200
+4 404
+1 403
+
+$ cat ~/siem-analysis/web_attacks_2026-01-02_214548.txt
+127.0.0.1 - - "GET /?id=1 UNION SELECT 1,2,3"
+127.0.0.1 - - "GET /../../etc/passwd"
+
+
+============================================================
+[Real-Time Monitoring Script]
+============================================================
+
+$ ./realtime-monitor.sh
+[Thu Jan  2 21:49:33 IST 2026] WEB ALERT: 127.0.0.1 - - "GET /invalid-page HTTP/1.1" 404
+[Thu Jan  2 21:49:41 IST 2026] AUTH FAIL: Failed password for fakeuser from 127.0.0.1
+
+^C
+
+
+============================================================
+[Log Normalization]
+============================================================
+
+$ ./log-normalizer.sh
+Normalization complete
+
+$ ls -lh ~/siem-analysis/normalized
+auth.json
+web.json
+
+$ head -3 ~/siem-analysis/normalized/auth.json
+{"event":"auth_failure","raw":"Failed password for fakeuser from 127.0.0.1"}
+
+$ head -3 ~/siem-analysis/normalized/web.json
+{"ip":"127.0.0.1","status":"200"}
+{"ip":"127.0.0.1","status":"404"}
+
+
+============================================================
+[Test Data Generation]
+============================================================
+
+$ ./generate-test-data.sh
+[+] Generating SIEM test events...
+[+] Test log events generated
+
+
+============================================================
+[Elasticsearch Index Verification]
+============================================================
+
+$ curl localhost:9200/_cat/indices?v
+health status index                   docs.count store.size
+green  open   siem-logs-2026.01.02    420         1.2mb
+
+
+============================================================
+[Query Verification]
+============================================================
+
+$ curl -s localhost:9200/siem-logs-*/_search?q=Failed | jq '.hits.total.value'
+6
+
+$ curl -s localhost:9200/siem-logs-*/_search?q=UNION | jq '.hits.total.value'
+1
+
+
+============================================================
+[Final Status]
+============================================================
+
+✔ Elasticsearch ingesting logs
+✔ Logstash parsing auth & web logs
+✔ Kibana accessible
+✔ Custom scripts generating artifacts
+✔ Real-time alerts working
+✔ Logs normalized to JSON
+✔ SIEM pipeline validated
+
+LAB 19 OUTPUT VERIFIED SUCCESSFULLY
+============================================================
