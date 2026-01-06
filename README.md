@@ -207,6 +207,6 @@ If you are preparing for:
 
 This repository demonstrates **production-grade capability**.
 
-Happy learning & building 🔐🚀
-I’ll do **only that**, nothing extra.
-```
+### Happy learning & building 🔐🚀
+
+---
