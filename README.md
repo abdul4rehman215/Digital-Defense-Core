@@ -1,4 +1,4 @@
-# 🛡️ Digital Defense Core — Hands-on Cyber Security Labs (Labs 1–20)
+# 🛡️ Digital Defense Core (Labs 1–20)
 
 <div align="center">
 
