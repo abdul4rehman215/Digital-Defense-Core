@@ -1,0 +1,5 @@
+Date        Time       Size   Type  Mode UID GID Meta File Name
+2026-01-02 14:12:33   63      r/r   755 1000 1000 12 /Documents/confidential.txt
+2026-01-02 14:12:45   58      r/r   755 1000 1000 13 /Documents/passwords.txt
+2026-01-02 14:13:02   46      r/r   755 1000 1000 15 /System/system.log
+2026-01-02 14:13:15   54      r/r   755 1000 1000 17 /deleted_file.txt (deleted)
