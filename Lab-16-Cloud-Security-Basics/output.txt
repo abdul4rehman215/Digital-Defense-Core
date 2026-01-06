@@ -1,0 +1,148 @@
+$ ls -l /opt/cloud-security-lab
+total 16
+drwxr-xr-x 2 root root 4096 users
+drwxr-xr-x 2 root root 4096 policies
+drwxr-xr-x 2 root root 4096 logs
+drwxr-xr-x 2 root root 4096 keys
+
+$ id cloud-admin cloud-developer cloud-readonly cloud-auditor
+uid=1001(cloud-admin) gid=1001(cloud-admin)
+uid=1002(cloud-developer) gid=1002(cloud-developer)
+uid=1003(cloud-readonly) gid=1003(cloud-readonly)
+uid=1004(cloud-auditor) gid=1004(cloud-auditor)
+
+$ groups cloud-admin
+cloud-admin : cloud-admin cloud-admins
+
+$ sudo /opt/cloud-security-lab/policy-manager.sh
+Policy created for cloud-admin
+Policy created for cloud-developer
+Policy created for cloud-readonly
+Policy created for cloud-auditor
+IAM policy system initialized
+
+$ sudo -u cloud-admin /opt/cloud-security-lab/policy-manager.sh check_permission cloud-admin "admin:create-instance"
+ALLOW: admin access
+
+$ sudo -u cloud-developer /opt/cloud-security-lab/policy-manager.sh check_permission cloud-developer "develop:deploy-app"
+ALLOW: developer access
+
+$ sudo -u cloud-readonly /opt/cloud-security-lab/policy-manager.sh check_permission cloud-readonly "admin:delete"
+DENY: insufficient permissions
+
+$ sudo /opt/cloud-security-lab/setup-mfa.sh cloud-admin
+Setting up MFA for cloud-admin
+Your new secret key is: JBSWY3DPEHPK3PXP
+Do you want authentication tokens to be time-based (y/n) y
+MFA enabled for cloud-admin
+
+$ sudo ufw --force reset
+Resetting all rules to installed defaults.
+
+$ sudo ufw default deny incoming
+Default incoming policy changed to 'deny'
+
+$ sudo ufw default allow outgoing
+Default outgoing policy changed to 'allow'
+
+$ sudo ufw allow from 10.0.0.0/8 to any port 22
+Rule added
+
+$ sudo ufw allow from 172.16.0.0/12 to any port 22
+Rule added
+
+$ sudo ufw allow from 192.168.0.0/16 to any port 22
+Rule added
+
+$ sudo ufw allow 80/tcp
+Rule added
+
+$ sudo ufw allow 443/tcp
+Rule added
+
+$ sudo ufw --force enable
+Firewall is active and enabled on system startup
+
+$ sudo ufw status verbose
+Status: active
+Default: deny (incoming), allow (outgoing)
+22 ALLOW IN 10.0.0.0/8
+22 ALLOW IN 172.16.0.0/12
+22 ALLOW IN 192.168.0.0/16
+80 ALLOW IN Anywhere
+443 ALLOW IN Anywhere
+
+$ sudo /opt/cloud-security-lab/network-monitor.sh
+Network monitoring completed
+
+$ tail -20 /opt/cloud-security-lab/logs/network-monitor.log
+=== Network Connection Monitor - Mon Jan 6 ===
+tcp        0      0 0.0.0.0:22        0.0.0.0:*       LISTEN
+tcp        0      0 0.0.0.0:80        0.0.0.0:*       LISTEN
+
+$ sudo /opt/cloud-security-lab/key-manager.sh
+Generated key: /opt/cloud-security-lab/keys/active/data-encryption.key
+Generated key: /opt/cloud-security-lab/keys/active/backup-encryption.key
+Generated key: /opt/cloud-security-lab/keys/active/log-encryption.key
+Key management initialized
+
+$ sudo /opt/cloud-security-lab/key-manager.sh encrypt_file /tmp/sensitive-data.txt data-encryption
+Encrypted: /tmp/sensitive-data.txt.encrypted
+
+$ sudo /opt/cloud-security-lab/key-manager.sh decrypt_file /tmp/sensitive-data.txt.encrypted data-encryption
+Decrypted: /tmp/sensitive-data.txt.decrypted
+
+$ cat /tmp/sensitive-data.txt.decrypted
+Sensitive cloud data
+
+$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+Currently banned: 0
+
+$ sudo /opt/cloud-security-lab/secure-backup.sh create
+Creating encrypted backup: security-backup-20260106-021530
+Backup stored at /opt/cloud-security-lab/backups
+
+$ sudo /opt/cloud-security-lab/secure-backup.sh list
+security-backup-20260106-021530.tar.gz.encrypted
+
+$ sudo /opt/cloud-security-lab/secure-backup.sh restore /opt/cloud-security-lab/backups/security-backup-20260106-021530.tar.gz.encrypted
+Backup restored to /tmp/restore-20260106
+
+$ sudo /opt/cloud-security-lab/security-audit.sh
+Audit reports generated:
+- /opt/cloud-security-lab/logs/security-audit-20260106-022300.log
+- /opt/cloud-security-lab/logs/security-report.html
+
+$ sudo /opt/cloud-security-lab/final-verification.sh
+=== CLOUD SECURITY LAB FINAL VERIFICATION ===
+
+[1] USERS
+uid=1001(cloud-admin)
+uid=1002(cloud-developer)
+uid=1003(cloud-readonly)
+uid=1004(cloud-auditor)
+
+[2] POLICY CHECK
+ALLOW: admin access
+
+[3] FIREWALL
+Status: active
+
+[4] ENCRYPTION KEYS
+data-encryption.key
+backup-encryption.key
+log-encryption.key
+
+[5] FAIL2BAN
+active
+
+[6] BACKUPS
+security-backup-20260106-021530.tar.gz.encrypted
+
+[7] LOGS
+access.log
+network-monitor.log
+security-audit-20260106-022300.log
+
+=== VERIFICATION COMPLETE ===
