@@ -1,0 +1,22 @@
+Autopsy Version: 4.20.0
+/usr/bin/autopsy
+
+100+0 records in
+100+0 records out
+104857600 bytes copied
+
+mkfs.fat 4.2 (2021-01-31)
+
+Filesystem mounted successfully
+
+Deleted file created and removed
+
+MD5 Hash generated
+SHA256 Hash generated
+
+Deleted file recovered in Autopsy
+Hidden file detected
+Timeline reconstructed successfully
+
+Final hash verification:
+(no differences found)
