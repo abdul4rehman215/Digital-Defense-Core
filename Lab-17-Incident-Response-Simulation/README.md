@@ -1,60 +1,119 @@
 # 🧪 Lab 17: Incident Response Simulation
 
+## 📌 Lab Overview
+This lab provides a **hands-on Incident Response (IR) simulation** using a single Linux system.  
+Students simulate suspicious activity, detect indicators of compromise, apply containment using firewall rules and network segmentation, preserve evidence, and produce professional incident response documentation.
+
+This lab mirrors **real SOC / Blue Team / Incident Response workflows** used in enterprise environments.
+
+---
+
 ## 🎯 Objectives
 By the end of this lab, students will be able to:
+
 - Understand the fundamentals of incident response procedures
-- Implement initial containment measures
-- Analyze simulated attack scenarios
-- Document incident response activities professionally
-- Use open-source tools for detection and response
-- Apply network security principles in an incident response context
+- Perform initial system and network assessment
+- Detect suspicious processes and network activity
+- Capture and preserve forensic evidence
+- Implement containment using firewall rules
+- Apply network segmentation during an incident
+- Document incidents using professional reporting standards
+- Perform cleanup and system verification after containment
+
+---
+
+## 🧠 Skills Demonstrated
+- Incident detection & triage
+- Firewall-based containment (iptables)
+- Network segmentation
+- Evidence preservation
+- Packet capture analysis
+- Professional incident reporting
+- Blue Team / SOC operations
+
+---
 
 ## 🖥️ Lab Environment
-- Ubuntu Linux (Cloud VM)
-- Single system for entire simulation
 
-## 📋 Prerequisites
-- Linux command line basics
-- Networking fundamentals (ports, IPs, protocols)
-- Firewall concepts
-- Understanding of common cyber attacks
-- Ability to interpret logs
-
----
-
-## 🧩 Task Overview
-
-### Task 1: Environment Setup & Initial Assessment
-- Tool installation
-- Baseline network evidence
-- Suspicious service deployment
-
-### Task 2: Incident Detection & Analysis
-- IOC identification
-- Process and port analysis
-- Packet capture
-
-### Task 3: Initial Containment
-- Firewall-based containment
-- Evidence preservation
-- Verification
-
-### Task 4: Network Segmentation
-- Quarantine and secure zones
-- Segmentation documentation
-
-### Task 5: Incident Response Reporting
-- Evidence collection
-- Professional IR report
-- Executive summary
-
-### Task 6: Cleanup & Verification
-- Process termination
-- Final system state
-- Containment verification
+| Component | Details |
+|---------|--------|
+| OS | Ubuntu Linux (Cloud VM) |
+| User | cloud-lab-user |
+| Shell | bash |
+| Scope | Single-host IR simulation |
+| Tools | iptables, tcpdump, netstat, ss, nmap, ufw |
 
 ---
 
-## 🏁 Conclusion
-This lab demonstrates a **complete incident response lifecycle**, including detection, containment, segmentation, evidence preservation, professional reporting, and verification.  
-It mirrors **real SOC / Blue Team / IR workflows** used in production environments.
+## 🧩 Task Breakdown
+
+### 🔹 Task 1: Environment Setup & Baseline Assessment
+- System update and tool verification
+- Deployment of a simulated suspicious service
+- Collection of baseline network and firewall data
+
+### 🔹 Task 2: Incident Detection & Analysis
+- Generation of suspicious network traffic
+- Identification of Indicators of Compromise (IOCs)
+- Packet capture using tcpdump
+- Documentation of suspicious activity
+
+### 🔹 Task 3: Initial Containment
+- Immediate blocking of malicious ports
+- IP-based isolation
+- Firewall logging enabled
+- Verification of containment effectiveness
+
+### 🔹 Task 4: Network Segmentation
+- Creation of quarantine and secure zones
+- Controlled traffic flow using iptables chains
+- Documentation of segmentation rules
+
+### 🔹 Task 5: Incident Reporting
+- Evidence collection and preservation
+- System state snapshot
+- Professional incident response report
+- Executive summary for management
+
+### 🔹 Task 6: Cleanup & Restoration
+- Safe termination of malicious processes
+- Final system state verification
+- Post-incident validation
+
+---
+
+## ✅ Final Outcomes
+
+✔ Suspicious activity successfully detected  
+✔ Indicators of compromise identified  
+✔ Firewall containment applied  
+✔ Network segmentation enforced  
+✔ Evidence preserved correctly  
+✔ Professional IR report generated  
+✔ System restored and verified  
+
+---
+
+## 🏁 Final Conclusion
+
+This lab demonstrates a **full incident response lifecycle**, from detection to containment, documentation, and recovery.
+
+Unlike basic labs, this simulation emphasizes:
+- Evidence preservation over premature eradication
+- Defense-in-depth using layered controls
+- Real-world SOC documentation standards
+- Operational discipline required in security incidents
+
+The techniques used in this lab directly align with:
+- SOC Analyst workflows
+- Blue Team operations
+- Incident Response playbooks
+- Compliance and audit requirements
+
+This is **production-grade incident response practice**, not theoretical exercises.
+
+---
+
+## 🔐 Security Relevance
+Incident response is a critical capability in cybersecurity operations.  
+Rapid detection, controlled containment, accurate documentation, and structured recovery determine whether an incident becomes a minor event or a major breach.
