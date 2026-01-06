@@ -1,27 +1,188 @@
-# Python
+############################################
+# 🔐 Digital Defense Core – .gitignore
+# Scope: Labs 1–20 (SOC • Blue Team • DFIR • SIEM • Automation)
+############################################
+
+############################################
+# 🚫 Secrets, Keys & Certificates
+############################################
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+*.der
+*.jks
+
+# OpenSSL / PKI artifacts
+ca.key
+server.key
+client.key
+ta.key
+dh.pem
+
+############################################
+# 🔐 Credentials & Environment Files
+############################################
+.env
+.env.*
+*.env
+credentials.txt
+secrets.txt
+passwords.txt
+
+############################################
+# 📜 Logs & Security Outputs
+############################################
+*.log
+logs/
+auth.log*
+secure.log*
+ufw.log*
+fail2ban.log*
+kern.log*
+syslog*
+audit.log*
+xss_detection.log
+alerts.log
+incident_*.log
+security-alerts.log
+network-monitor.log
+
+############################################
+# 🧪 Generated Outputs & Reports
+############################################
+outputs/
+output.txt
+output.log
+report.txt
+summary.txt
+analysis.txt
+results.txt
+
+# Incident Response / DFIR reports
+incident_*.txt
+incident_*.md
+executive_summary.txt
+final_system_state.txt
+containment_*.txt
+segmentation_*.txt
+
+############################################
+# 📦 Python Artifacts
+############################################
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# Virtual environments
+.venv/
 venv/
-.env/
+env/
+pip-wheel-metadata/
 
-# Logs
-*.log
+############################################
+# 🐚 Shell Script Temp & Editor Files
+############################################
+*.swp
+*.bak
+*.tmp
+*.old
+*.orig
 
-# Encrypted / sensitive files
-*.enc
-*.key
-*.pem
-salt.key
-credentials.enc
+############################################
+# 🌐 Web Application Artifacts
+############################################
+uploads/
+sessions/
+cache/
+*.session
 
-# OS
+############################################
+# 🕵️ Network & Forensics Artifacts
+############################################
+*.pcap
+*.pcapng
+*.cap
+*.dump
+*.trace
+
+# Autopsy / DFIR artifacts
+*.img
+*.dd
+*.raw
+*.e01
+*.aff
+*.aff4
+*.ad1
+*.001
+timeline_body.txt
+filesystem_timeline.txt
+evidence_*/
+exported_evidence/
+
+############################################
+# 📊 SIEM / ELK Stack Artifacts
+############################################
+elasticsearch/
+logstash/
+kibana/
+siem-analysis/
+normalized/
+alerts.log
+*.json.bak
+
+############################################
+# 🧰 Patch Management & Automation Artifacts
+############################################
+reports/
+dashboard.html
+system_snapshot_*.json
+vuln_scan_*.json
+patch_activity.log
+
+############################################
+# 🧰 System & Editor Files
+############################################
 .DS_Store
 Thumbs.db
-
-# Editor
 .vscode/
 .idea/
+*.code-workspace
+
+############################################
+# ⚠️ OS & Package Artifacts
+############################################
+*.deb
+*.rpm
+*.tar
+*.tar.gz
+*.zip
+
+############################################
+# 🔧 Temporary Backups from Labs
+############################################
+iptables.rules
+iptables_backup_*
+network_backup_*
+firewall_backup_*
+snapshot_*
+backup_*
+
+############################################
+# 🧪 Lab-Specific Temporary Directories
+############################################
+/tmp/*
+!/tmp/.gitkeep
+
+############################################
+# ✅ Explicitly Allowed (Tracked)
+############################################
+!README.md
+!commands.sh
+!output.txt
+!interview_qna.md
+!troubleshooting.md
+!scripts/
+!scripts/*.sh
+!scripts/*.py
