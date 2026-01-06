@@ -1,0 +1,5 @@
+r/r 12: confidential.txt
+r/r 13: passwords.txt
+r/r 14: meeting_notes.txt
+r/r 15: system.log
+r/r 17: deleted_file.txt (deleted)
