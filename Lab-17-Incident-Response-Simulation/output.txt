@@ -1,0 +1,171 @@
+========================================
+Lab 17: Incident Response Simulation
+Execution Outputs
+========================================
+
+----------------------------------------
+Task 1: Environment Setup & Initial Assessment
+----------------------------------------
+
+$ sudo apt update
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:2 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Reading package lists... Done
+
+$ sudo apt install -y iptables net-tools iproute2 tcpdump nmap ufw
+iptables is already the newest version.
+net-tools is already the newest version.
+iproute2 is already the newest version.
+tcpdump is already the newest version.
+nmap is already the newest version.
+ufw is already the newest version.
+0 upgraded, 0 newly installed, 0 to remove.
+
+$ iptables --version
+iptables v1.8.7 (nf_tables)
+
+$ ss --version
+ss utility, iproute2-5.15.0
+
+$ tcpdump --version
+tcpdump version 4.99.3
+
+$ nmap --version
+Nmap version 7.92
+
+$ python3 suspicious_server.py &
+[1] 4231
+Suspicious server running on port 8080
+
+$ cat server_pid.txt
+Suspicious server PID: 4231
+
+$ cat initial_assessment.txt
+=== INITIAL NETWORK ASSESSMENT ===
+Date: Mon Jan 6 21:34:02 IST 2026
+
+Active Network Connections:
+tcp   LISTEN 0.0.0.0:8080
+tcp   LISTEN 127.0.0.53:53
+
+Current Firewall Rules:
+Chain INPUT (policy ACCEPT)
+
+Processes Using Network Ports:
+tcp 0 0 0.0.0.0:8080 LISTEN 4231/python3
+
+----------------------------------------
+Task 2: Incident Detection & Analysis
+----------------------------------------
+
+$ ./generate_suspicious_traffic.sh
+Generating suspicious network traffic...
+Suspicious traffic generated
+
+$ cat nc_pid.txt
+4387
+
+$ cat incident_detection.txt
+=== INCIDENT DETECTION ===
+Detection Time: Mon Jan 6 22:01:48 IST 2026
+
+Suspicious Connections Detected:
+tcp LISTEN 0.0.0.0:8080
+tcp LISTEN 0.0.0.0:9999
+
+Suspicious Processes:
+root 4231 python3 suspicious_server.py
+root 4387 nc -l -p 9999
+
+Network traffic captured in suspicious_traffic.pcap
+
+$ ls -lh suspicious_traffic.pcap
+-rw-r--r-- 1 root root 18K Jan 6 22:02 suspicious_traffic.pcap
+
+----------------------------------------
+Task 3: Containment
+----------------------------------------
+
+$ ./containment_actions.sh
+=== IMPLEMENTING CONTAINMENT MEASURES ===
+Containment Start Time: Mon Jan 6 22:20:12 IST 2026
+Firewall rules backed up to iptables_backup.txt
+Blocking suspicious port 8080...
+Blocking suspicious port 9999...
+Blocking suspicious IP range 192.168.100.0/24...
+Containment measures implemented successfully
+Containment End Time: Mon Jan 6 22:20:14 IST 2026
+
+$ sudo iptables -L -n -v
+DROP tcp -- 0.0.0.0/0 0.0.0.0/0 tcp dpt:8080
+DROP tcp -- 0.0.0.0/0 0.0.0.0/0 tcp dpt:9999
+DROP all -- 192.168.100.0/24 0.0.0.0/0
+LOG all -- 0.0.0.0/0 0.0.0.0/0 LOG flags 0 level 4 prefix "INCIDENT_BLOCKED: "
+
+$ cat containment_verification.txt
+=== CONTAINMENT VERIFICATION ===
+Verification Time: Mon Jan 6 22:23:11 IST 2026
+
+Testing blocked port 8080:
+curl: (7) Failed to connect to localhost port 8080
+
+Remaining Suspicious Processes:
+root 4231 python3 suspicious_server.py
+root 4387 nc -l -p 9999
+
+----------------------------------------
+Task 4: Network Segmentation
+----------------------------------------
+
+$ ./network_segmentation.sh
+=== IMPLEMENTING NETWORK SEGMENTATION ===
+Segmentation Start Time: Mon Jan 6 22:35:01 IST 2026
+Network segmentation implemented successfully
+Segmentation End Time: Mon Jan 6 22:35:02 IST 2026
+
+$ cat segmentation_config.txt
+Segmentation Zones Created:
+QUARANTINE_ZONE
+SECURE_ZONE
+
+----------------------------------------
+Task 5: Evidence Collection
+----------------------------------------
+
+$ ./collect_evidence.sh
+=== COLLECTING INCIDENT EVIDENCE ===
+Evidence collected in directory: incident_evidence_20260106_114233
+
+$ ls incident_evidence_20260106_114233
+auth.log
+incident_detection.txt
+initial_assessment.txt
+containment_verification.txt
+segmentation_config.txt
+suspicious_traffic.pcap
+system_state.txt
+syslog
+
+----------------------------------------
+Task 6: Cleanup & Verification
+----------------------------------------
+
+$ ./cleanup_simulation.sh
+=== CLEANING UP SIMULATION ENVIRONMENT ===
+Terminating suspicious server (PID: 4231)...
+Terminating netcat listener (PID: 4387)...
+Process cleanup completed
+
+$ ./verify_containment.sh
+=== CONTAINMENT VERIFICATION TEST ===
+Test Time: Mon Jan 6 11:49:01 UTC 2026
+
+Testing port 8080:
+curl: (7) Failed to connect to localhost port 8080
+
+Testing port 9999:
+nc: connect to localhost port 9999 failed: Connection refused
+
+No suspicious processes detected
+
+=== VERIFICATION COMPLETE ===
