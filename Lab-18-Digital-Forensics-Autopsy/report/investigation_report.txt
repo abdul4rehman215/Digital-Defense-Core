@@ -1,0 +1,54 @@
+DIGITAL FORENSICS INVESTIGATION REPORT
+=====================================
+
+Case Information
+----------------
+Case Name       : USB_Investigation_2024
+Evidence File   : evidence_usb.img
+Evidence Type   : Disk Image (FAT32)
+Investigator    : cloud-lab-user
+Investigation Date : Tue Jan 2 2026
+Tools Used      : Autopsy 4.20+, SleuthKit
+
+Evidence Integrity
+------------------
+MD5 Hash     : (from evidence_usb.img.md5)
+SHA256 Hash  : (from evidence_usb.img.sha256)
+Hash Status  : Verified – No modification detected
+
+Key Findings
+------------
+1. File System Analysis
+- FAT32 file system detected
+- Directory structure preserved
+- No corruption observed
+
+2. Sensitive Files Identified
+- confidential.txt
+- meeting_notes.txt
+- passwords.txt (plaintext credentials)
+
+3. Hidden Artifacts
+- .hidden_config located in root directory
+
+4. Deleted File Recovery
+- deleted_file.txt recovered from unallocated space
+
+5. Timeline Analysis
+- Sequential manual file creation
+- No timestamp manipulation detected
+
+Conclusion
+----------
+Sensitive and credential-related artifacts were present on the disk image.
+Deleted and hidden files confirm deliberate user actions.
+Evidence integrity remained intact throughout the investigation.
+
+Chain of Custody
+----------------
+Evidence Created   : Tue Jan 2 2026
+Initial Hashing    : Completed
+Analysis Performed : Tue Jan 2 2026
+Final Verification : Hashes matched
+
+Report Prepared By: cloud-lab-user
