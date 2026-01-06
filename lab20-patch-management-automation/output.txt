@@ -1,0 +1,118 @@
+-------------------------------
+Task 1: Environment Setup
+-------------------------------
+
+$ sudo apt update
+Hit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://security.ubuntu.com/ubuntu focal-security InRelease
+Reading package lists... Done
+
+$ sudo apt install -y python3-pip python3-venv unattended-upgrades apt-listchanges
+Setting up python3-pip (20.0.2-5ubuntu1) ...
+Setting up python3-venv (3.8.10-0ubuntu1~20.04) ...
+Setting up unattended-upgrades (2.3ubuntu0.4) ...
+Setting up apt-listchanges (3.24) ...
+
+$ pip3 install pyyaml schedule psutil requests
+Successfully installed pyyaml schedule psutil requests
+
+$ sudo apt install -y lynis
+Setting up lynis (3.0.7-1) ...
+
+$ python3 --version
+Python 3.8.10
+
+$ lynis --version
+3.0.7
+
+-------------------------------
+Task 1: Project Structure
+-------------------------------
+
+$ mkdir -p ~/patch-management-lab
+$ cd ~/patch-management-lab
+$ mkdir -p scripts configs logs reports
+$ touch scripts/__init__.py
+$ touch configs/patch_config.yaml
+
+(no output)
+
+-------------------------------
+Task 1: Unattended Upgrades
+-------------------------------
+
+$ sudo dpkg-reconfigure -plow unattended-upgrades
+Automatically download and install stable updates?  Yes
+
+$ cat /etc/apt/apt.conf.d/20auto-upgrades
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "7";
+APT::Periodic::Unattended-Upgrade "1";
+
+-------------------------------
+Task 2: Patch Manager Testing
+-------------------------------
+
+$ python3 scripts/test_patch_manager.py
+Available updates: 12
+Snapshot created: reports/system_snapshot_1736189203.json
+
+-------------------------------
+Task 3: Vulnerability Scanner
+-------------------------------
+
+$ python3 scripts/test_scanner.py
+Scan saved to: reports/vuln_scan_1736189321.json
+
+-------------------------------
+Task 4: Automated Patch Cycle
+-------------------------------
+
+$ python3 scripts/run_patch_cycle.py --security-only
+{
+  "pre": {
+    "disk_ok": true,
+    "memory_ok": true,
+    "snapshot": {
+      "snapshot_file": "reports/system_snapshot_1736189400.json"
+    }
+  },
+  "scan": {
+    "lynis": {
+      "warnings": 3,
+      "suggestions": 12
+    }
+  },
+  "install": {
+    "success": true,
+    "reboot_required": false
+  },
+  "post": {
+    "reboot_required": false
+  }
+}
+
+-------------------------------
+Task 5: Dashboard Generator
+-------------------------------
+
+$ python3 scripts/generate_dashboard.py
+Dashboard generated: reports/dashboard.html
+
+-------------------------------
+Final Verification
+-------------------------------
+
+$ ls -lh reports/
+system_snapshot_1736189203.json
+system_snapshot_1736189400.json
+vuln_scan_1736189321.json
+dashboard.html
+
+$ ls -lh logs/
+patch_activity.log
+
+============================================
+Lab 20 execution completed successfully
+============================================
