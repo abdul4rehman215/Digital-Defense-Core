@@ -384,12 +384,12 @@ docker image prune -f
 
 ## ✅ Best Practices to Avoid Issues
 
-✔ Always scan images before deployment
-✔ Use minimal base images
-✔ Run containers as non-root
-✔ Enable runtime monitoring
-✔ Apply resource limits
-✔ Log and audit continuously
+- ✔ Always scan images before deployment
+- ✔ Use minimal base images
+- ✔ Run containers as non-root
+- ✔ Enable runtime monitoring
+- ✔ Apply resource limits
+- ✔ Log and audit continuously
 
 ---
 
