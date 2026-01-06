@@ -1,0 +1,61 @@
+Setting up samba (2:4.19.5+dfsg-1ubuntu2) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/smbd.service
+Setting up winbind (2:4.19.5+dfsg-1ubuntu2) ...
+
+Domain provision complete!
+
+OU=IT,DC=labdomain,DC=local created successfully
+OU=HR,DC=labdomain,DC=local created successfully
+OU=SecurityGroups,DC=labdomain,DC=local created successfully
+
+User 'itadmin' created successfully
+User 'hruser' created successfully
+User 'restricteduser' created successfully
+
+Added members to IT_Administrators
+Added members to HR_Users
+Added members to Restricted_Users
+
+Administrator
+itadmin
+hruser
+restricteduser
+
+Domain Users
+IT_Administrators
+HR_Users
+Restricted_Users
+
+Applying password policies...
+Password complexity activated
+Minimum password length changed to 12
+Maximum password age changed to 90 days
+Account lockout threshold set to 5
+
+Password complexity: on
+Minimum password length: 12
+Password history length: 12
+Minimum password age (days): 1
+Maximum password age (days): 90
+Account lockout threshold: 5
+Account lockout duration (mins): 30
+
+Configuring user rights assignments...
+User rights assignment completed!
+
+Mon Jan 06 22:14:32 UTC 2026: User rights configured for IT_Administrators group
+Mon Jan 06 22:14:32 UTC 2026: User rights configured for HR_Users group
+Mon Jan 06 22:14:32 UTC 2026: User rights configured for Restricted_Users group
+
+iptables-persistent installed
+Saving current rules...
+
+RDP BLOCKED (After Hours)
+
+Firewall Monitor Summary:
+Dropped packets: 0
+
+✓ SSH ALLOWED
+✓ HTTP ALLOWED
+✓ TELNET BLOCKED
+✓ RPC BLOCKED
