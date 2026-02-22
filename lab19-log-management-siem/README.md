@@ -4,7 +4,7 @@
 
 ## 🎯 Objectives
 
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 
 - Install and configure the ELK Stack for centralized log management
 - Implement log parsing and normalization using Logstash filters
@@ -16,9 +16,6 @@ By the end of this lab, students will be able to:
 ---
 
 ## 📋 Prerequisites
-
-Before starting this lab, students should have:
-
 - Basic Linux command line proficiency
 - Understanding of system logs and their security relevance
 - Familiarity with nano / vim
