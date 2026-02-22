@@ -1,7 +1,7 @@
 # 🧪 Lab 4: Cryptography with Python
 
 ## 🎯 Objectives
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 - Implement symmetric encryption using AES (Advanced Encryption Standard)
 - Create asymmetric encryption using RSA (Rivest–Shamir–Adleman)
 - Compare performance and use cases of symmetric vs asymmetric encryption
