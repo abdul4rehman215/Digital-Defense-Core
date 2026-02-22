@@ -1,11 +1,12 @@
-############################################
+############################################################
 # 🔐 Digital Defense Core – .gitignore
-# Scope: Labs 1–20 (SOC • Blue Team • DFIR • SIEM • Automation)
-############################################
+# Scope: Labs 01–20
+# Domains: Identity • Network • Infra • DFIR • SIEM • Patch Automation
+############################################################
 
-############################################
-# 🚫 Secrets, Keys & Certificates
-############################################
+############################################################
+# 🚫 Secrets, Keys & Certificates (NEVER COMMIT)
+############################################################
 *.key
 *.pem
 *.crt
@@ -14,29 +15,38 @@
 *.pfx
 *.der
 *.jks
+*.srl
+chain.pem
 
-# OpenSSL / PKI artifacts
+# Private key naming patterns
+*private*.key
+*private*.pem
 ca.key
 server.key
 client.key
 ta.key
 dh.pem
 
-############################################
+############################################################
 # 🔐 Credentials & Environment Files
-############################################
+############################################################
 .env
 .env.*
 *.env
 credentials.txt
+credentials*.json
 secrets.txt
 passwords.txt
+salt.key
+credentials.enc
 
-############################################
+############################################################
 # 📜 Logs & Security Outputs
-############################################
+############################################################
 *.log
 logs/
+log/
+
 auth.log*
 secure.log*
 ufw.log*
@@ -44,143 +54,202 @@ fail2ban.log*
 kern.log*
 syslog*
 audit.log*
+patch_activity.log
+
 xss_detection.log
 alerts.log
-incident_*.log
 security-alerts.log
 network-monitor.log
+incident_*.log
 
-############################################
+############################################################
 # 🧪 Generated Outputs & Reports
-############################################
+############################################################
 outputs/
+artifacts/
+reports/generated/
+
 output.txt
 output.log
-report.txt
 summary.txt
 analysis.txt
 results.txt
 
-# Incident Response / DFIR reports
+baseline*.txt
+test_results*.txt
+compliance_report*.txt
+*_assessment*.txt
+*_verification*.txt
+*_detection*.txt
+system_state*.txt
+final_system_state*.txt
+
+# IR / DFIR reports
 incident_*.txt
-incident_*.md
-executive_summary.txt
-final_system_state.txt
 containment_*.txt
 segmentation_*.txt
 
-############################################
-# 📦 Python Artifacts
-############################################
+# Patch / Scan JSON reports
+system_snapshot_*.json
+vuln_scan_*.json
+*scan-results.json
+*vuln-report.json
+*.json.bak
+
+dashboard.html
+
+############################################################
+# 🐍 Python Artifacts
+############################################################
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.egg-info/
+pip-wheel-metadata/
+dist/
+build/
+
+# Virtual environments
 .venv/
 venv/
 env/
-pip-wheel-metadata/
 
-############################################
-# 🐚 Shell Script Temp & Editor Files
-############################################
+# Jupyter
+.ipynb_checkpoints/
+
+############################################################
+# 🐚 Shell / Editor / Temp Files
+############################################################
 *.swp
 *.bak
 *.tmp
 *.old
 *.orig
+*.swo
 
-############################################
+############################################################
 # 🌐 Web Application Artifacts
-############################################
+############################################################
 uploads/
 sessions/
 cache/
 *.session
+*.db
 
-############################################
-# 🕵️ Network & Forensics Artifacts
-############################################
+############################################################
+# 🌐 Network / VPN Artifacts
+############################################################
+*.ovpn
+easy-rsa/pki/
+openvpn-status.log
+vpn-client.log
+curl_trace.txt
+
+# Packet captures
 *.pcap
 *.pcapng
 *.cap
 *.dump
 *.trace
 
-# Autopsy / DFIR artifacts
+############################################################
+# 🕵️ Forensics & Evidence Containers
+############################################################
 *.img
 *.dd
 *.raw
+*.E01
 *.e01
 *.aff
 *.aff4
 *.ad1
 *.001
+
 timeline_body.txt
 filesystem_timeline.txt
+
 evidence_*/
 exported_evidence/
+case_data/
+autopsy_cases/
+Autopsy/
+sleuthkit_case/
 
-############################################
-# 📊 SIEM / ELK Stack Artifacts
-############################################
+############################################################
+# 📊 SIEM / ELK Stack Data
+############################################################
 elasticsearch/
+elasticsearch-data/
+es-data/
 logstash/
+logstash-data/
 kibana/
+kibana-data/
 siem-analysis/
 normalized/
-alerts.log
-*.json.bak
+*.ndjson
 
-############################################
-# 🧰 Patch Management & Automation Artifacts
-############################################
-reports/
-dashboard.html
-system_snapshot_*.json
-vuln_scan_*.json
-patch_activity.log
+############################################################
+# 🏗 Infrastructure / Virtualization / Containers
+############################################################
+# VM images & backups
+*.qcow2
+libvirt/images/
+vm-backups/
+var/backups/
+snapshots/
+*snapshot*.xml
 
-############################################
-# 🧰 System & Editor Files
-############################################
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-*.code-workspace
+# Docker / Runtime security outputs
+docker-bench-results.log
+falco.log
 
-############################################
-# ⚠️ OS & Package Artifacts
-############################################
+############################################################
+# ☁ Cloud / Encrypted Backups
+############################################################
+*.encrypted
+backups/
+backup_*
+snapshot_*
+
+############################################################
+# 🧰 Firewall / Network Backups
+############################################################
+iptables.rules
+iptables_backup_*
+network_backup_*
+firewall_backup_*
+
+############################################################
+# ⚠️ OS / Package Artifacts
+############################################################
 *.deb
 *.rpm
 *.tar
 *.tar.gz
 *.zip
 
-############################################
-# 🔧 Temporary Backups from Labs
-############################################
-iptables.rules
-iptables_backup_*
-network_backup_*
-firewall_backup_*
-snapshot_*
-backup_*
+############################################################
+# 🖥 System / IDE Files
+############################################################
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.code-workspace
 
-############################################
-# 🧪 Lab-Specific Temporary Directories
-############################################
+############################################################
+# 🧪 Lab Temporary Directory
+############################################################
 /tmp/*
 !/tmp/.gitkeep
 
-############################################
-# ✅ Explicitly Allowed (Tracked)
-############################################
+############################################################
+# ✅ Explicitly Allowed (Tracked Portfolio Files)
+############################################################
 !README.md
 !commands.sh
-!output.txt
 !interview_qna.md
 !troubleshooting.md
 !scripts/
