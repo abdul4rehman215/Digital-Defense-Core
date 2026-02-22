@@ -84,7 +84,7 @@ Each segment is simulated using **dummy network interfaces**, allowing segmentat
 
 ---
 
-✅ Expected Outcomes
+## ✅ Expected Outcomes
 
 After completing this lab, you will have:
 - fully segmented network architecture
@@ -96,7 +96,9 @@ After completing this lab, you will have:
 
 --- 
 
-🏁 Conclusion
+## 🏁 Conclusion
+
+
 This lab demonstrates how network architecture itself is a security control.
 By combining segmentation, firewall enforcement, automation, and monitoring, the system achieves strong isolation between network zones while remaining manageable and auditable.
 
