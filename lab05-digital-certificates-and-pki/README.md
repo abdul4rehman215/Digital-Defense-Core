@@ -3,7 +3,7 @@
 ---
 
 ## 🎯 Objectives
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 - Understand Public Key Infrastructure (PKI) components and certificate chains
 - Generate and manage digital certificates using OpenSSL
 - Verify certificate authenticity and validity programmatically
