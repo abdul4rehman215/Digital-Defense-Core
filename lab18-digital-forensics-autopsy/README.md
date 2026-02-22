@@ -1,7 +1,8 @@
 # 🧪 Lab 18: Digital Forensics with Autopsy
 
 ## 🎯 Objectives
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
+
 • Install and configure Autopsy digital forensics platform on Linux  
 • Create and analyze disk images for forensic investigation  
 • Extract digital evidence from file systems using Autopsy  
