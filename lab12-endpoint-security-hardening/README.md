@@ -1,15 +1,5 @@
 # 🧪 Lab 12 – Endpoint Security & Hardening
 
-## 🖥 Environment
-- OS: Ubuntu 24.04 LTS (Cloud-based Linux Lab)
-- User: cloud-lab-user
-- Shell: bash
-- Services: OpenSSH, fail2ban, UFW
-- Scripting: Bash
-- Logs Monitored: /var/log/auth.log
-
----
-
 ## 🎯 Objectives
 By completing this lab, the following objectives were achieved:
 
@@ -30,6 +20,16 @@ By completing this lab, the following objectives were achieved:
 - Familiarity with nano or vim
 - Basic understanding of SSH protocol
 - Knowledge of Linux log file locations
+
+---
+
+## 🖥 Environment
+- OS: Ubuntu 24.04 LTS (Cloud-based Linux Lab)
+- User: cloud-lab-user
+- Shell: bash
+- Services: OpenSSH, fail2ban, UFW
+- Scripting: Bash
+- Logs Monitored: /var/log/auth.log
 
 ---
 
