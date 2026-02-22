@@ -1,15 +1,5 @@
 # 🧪 Lab 11 – SQL Injection Mitigation
 
-## 🖥 Environment
-- OS: Ubuntu 24.04 LTS (Cloud Lab Environment)
-- User: cloud-lab-user
-- Shell: bash
-- Language: Python 3
-- Framework: Flask
-- Database: SQLite3
-
----
-
 ## 🎯 Objectives
 By the end of this lab, the following skills were achieved:
 
@@ -27,6 +17,16 @@ By the end of this lab, the following skills were achieved:
 - Understanding of SQL (SELECT, INSERT, UPDATE)
 - Familiarity with HTTP requests and web forms
 - Basic Linux command-line skills
+
+---
+
+## 🖥 Environment
+- OS: Ubuntu 24.04 LTS (Cloud Lab Environment)
+- User: cloud-lab-user
+- Shell: bash
+- Language: Python 3
+- Framework: Flask
+- Database: SQLite3
 
 ---
 
