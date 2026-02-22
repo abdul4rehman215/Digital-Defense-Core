@@ -9,7 +9,7 @@ This lab mirrors **real SOC / Blue Team / Incident Response workflows** used in 
 ---
 
 ## 🎯 Objectives
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 
 - Understand the fundamentals of incident response procedures
 - Perform initial system and network assessment
