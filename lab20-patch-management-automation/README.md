@@ -11,7 +11,7 @@ system administrators, and DevSecOps engineers.
 ---
 
 ## 🎯 Objectives
-By completing this lab, you will be able to:
+By completing this lab, I was able to:
 
 - Implement automated patch management workflows using Python
 - Configure unattended security updates on Linux
@@ -24,8 +24,6 @@ By completing this lab, you will be able to:
 ---
 
 ## 📋 Prerequisites
-Before starting this lab, you should have:
-
 - Basic Linux command-line proficiency
 - Python programming fundamentals
 - Understanding of Linux package management (apt)
