@@ -78,12 +78,12 @@ By completing this lab, I was able to:
 
 ## ✅ Verification Checklist
 
-✔ AD users and groups created
-✔ Password and lockout policies enforced
-✔ Audit policies logged correctly
-✔ Firewall default-deny policy applied
-✔ Time-based and IP-based rules enforced
-✔ Logging and monitoring validated
+- ✔ AD users and groups created
+- ✔ Password and lockout policies enforced
+- ✔ Audit policies logged correctly
+- ✔ Firewall default-deny policy applied
+- ✔ Time-based and IP-based rules enforced
+- ✔ Logging and monitoring validated
 
 ---
 
