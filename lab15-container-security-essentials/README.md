@@ -8,7 +8,7 @@ The lab is designed to demonstrate **defense-in-depth for containerized environm
 ---
 
 ## 🎯 Objectives
-By the end of this lab, you will be able to:
+By the end of this lab, I was able to:
 
 - Understand fundamental container security concepts and common vulnerabilities
 - Scan Docker images for known vulnerabilities using Trivy
