@@ -1,14 +1,7 @@
 # 🧪 Lab 03: Secure Credential Management
 
-## 🖥️ Environment
-- OS: Ubuntu 24.04 LTS (Cloud Lab Environment)
-- User: toor
-- Python Version: Python 3.x
-
----
-
 ## 🎯 Objectives
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 - Enforce strong password policies programmatically
 - Generate cryptographically secure passwords
 - Securely store credentials using encryption
@@ -23,6 +16,13 @@ By the end of this lab, students will be able to:
 - Linux command-line familiarity
 - Understanding of cybersecurity fundamentals
 - Familiarity with Python virtual environments and packages
+
+---
+
+## 🖥️ Environment
+- OS: Ubuntu 24.04 LTS (Cloud Lab Environment)
+- User: toor
+- Python Version: Python 3.x
 
 ---
 
@@ -52,6 +52,4 @@ By the end of this lab, students will be able to:
 ---
 
 ## 🏁 Conclusion
-This lab demonstrates how secure credential systems are built in real environments.
-Strong password enforcement, encryption, hashing, and auditing are critical pillars
-of identity and access security in enterprise systems.
+This lab demonstrates how secure credential systems are built in real environments. Strong password enforcement, encryption, hashing, and auditing are critical pillars of identity and access security in enterprise systems.
