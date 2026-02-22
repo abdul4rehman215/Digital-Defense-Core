@@ -16,7 +16,7 @@ This approach mirrors real-world Windows enterprise environments while remaining
 ---
 
 ## 🎯 Objectives
-By completing this lab, you will be able to:
+By completing this lab, I was able to:
 
 - Understand Windows security hardening fundamentals
 - Simulate Active Directory using Samba
