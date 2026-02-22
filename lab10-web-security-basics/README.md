@@ -1,16 +1,5 @@
 # 🧪 Lab 10: Web Security Basics
 
----
-
-## 📌 Lab Information
-- **System:** Ubuntu 24.04 LTS  
-- **User:** cloud-lab-user  
-- **Shell:** bash  
-- **Web Server:** Apache 2  
-- **Languages Used:** PHP, Python  
-
----
-
 ## 🎯 Objectives
 By completing this lab, the following objectives were achieved:
 
@@ -29,7 +18,16 @@ By completing this lab, the following objectives were achieved:
 - Understanding of HTTP vs HTTPS  
 - Familiarity with Apache web server  
 - Basic PHP and Python knowledge  
-- Awareness of common web security vulnerabilities  
+- Awareness of common web security vulnerabilities
+
+---
+
+## 📌 Lab Information
+- **System:** Ubuntu 24.04 LTS  
+- **User:** cloud-lab-user  
+- **Shell:** bash  
+- **Web Server:** Apache 2  
+- **Languages Used:** PHP, Python  
 
 ---
 
