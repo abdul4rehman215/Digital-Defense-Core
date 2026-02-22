@@ -8,7 +8,7 @@ The lab was performed on a hardened Ubuntu 24.04 LTS system using KVM/libvirt an
 ---
 
 ## 🎯 Objectives
-By completing this lab, you will be able to:
+By completing this lab, I was able to:
 - Install and configure a secure KVM virtualization environment
 - Apply hypervisor-level security controls using AppArmor and libvirt
 - Harden virtual machines (CPU, storage, network isolation)
