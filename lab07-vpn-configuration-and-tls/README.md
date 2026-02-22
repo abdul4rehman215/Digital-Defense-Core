@@ -2,19 +2,9 @@
 
 ---
 
-## 🖥️ Environment
-
-- **OS:** Ubuntu 24.04.1 LTS (Cloud Lab Environment)
-- **User:** toor
-- **Host:** AWS EC2
-- **Network Interface:** ens5
-- **Shell Prompt:** `toor@ip-172-31-10-214:~$`
-
----
-
 ## 🎯 Objectives
 
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 
 - Understand the fundamentals of VPN technology and TLS encryption
 - Install and configure an OpenVPN server on Linux
@@ -34,6 +24,16 @@ By the end of this lab, students will be able to:
 - Familiarity with file permissions and Linux text editors
 - Basic cryptography knowledge (certificates, keys)
 - Experience with Linux package management
+
+---
+
+## 🖥️ Environment
+
+- **OS:** Ubuntu 24.04.1 LTS (Cloud Lab Environment)
+- **User:** toor
+- **Host:** AWS EC2
+- **Network Interface:** ens5
+- **Shell Prompt:** `toor@ip-172-31-10-214:~$`
 
 ---
 
@@ -84,6 +84,3 @@ These skills are essential for:
 - TLS and encrypted communication validation
 
 ---
-
-✔ **Lab completed successfully on a cloud-based Linux environment**  
-✔ **Ready for GitHub documentation and recruiter review**
