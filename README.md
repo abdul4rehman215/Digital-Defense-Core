@@ -1,4 +1,4 @@
-# 🛡️ Digital Defense Core (Labs 1–20)
+# 🛡️ Digital Defense Core 
 
 <div align="center">
 
@@ -186,9 +186,6 @@ Sensitive artifacts are excluded by design:
 * SIEM indices
 * Credentials & secrets
 * Backups & snapshots
-
-✔ Security-first Git hygiene
-✔ Recruiter-safe repository
 
 ---
 
