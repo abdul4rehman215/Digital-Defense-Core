@@ -9,7 +9,7 @@ The entire architecture is implemented on a **single Ubuntu system** using **dum
 ---
 
 ## 🎯 Objectives
-By completing this lab, you will be able to:
+By completing this lab, I was able to:
 
 - Understand the fundamentals of **network segmentation** and its security benefits
 - Design logical network zones (DMZ, Internal, Management)
@@ -23,7 +23,6 @@ By completing this lab, you will be able to:
 ---
 
 ## 📋 Prerequisites
-Before starting this lab, you should have:
 
 - Basic Linux command-line experience
 - Understanding of IP addressing and subnetting
