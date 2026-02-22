@@ -9,7 +9,7 @@ The lab uses **UFW** for firewall rule management and **Fail2Ban** for automated
 ---
 
 ## 🎯 Objectives
-By completing this lab, you will be able to:
+By completing this lab, I able to:
 - Understand firewall and IDS/IPS fundamentals
 - Install and configure Fail2Ban
 - Implement firewall rules using UFW
@@ -61,7 +61,7 @@ By completing this lab, you will be able to:
 
 ## ✅ Expected Outcome
 
-After completing this lab, the system will:
+After completing this lab, the system wwill:
 
 * Automatically block brute-force SSH attempts
 * Enforce firewall policies with least-privilege access
