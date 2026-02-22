@@ -1,14 +1,7 @@
 # 🧪 Lab 02: Implementing Zero Trust Access
 
-## 🖥️ Environment
-- OS: Ubuntu 24.04 LTS (Cloud Lab Environment)
-- User: toor
-- Shell: Bash
-
----
-
 ## 🎯 Objectives
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 - Understand and apply Zero Trust security principles
 - Implement least privilege access controls
 - Create policy-based access enforcement
@@ -23,6 +16,13 @@ By the end of this lab, students will be able to:
 - Understanding of file permissions (chmod, chown)
 - Basic shell scripting skills
 - Foundational cybersecurity concepts
+
+---
+
+## 🖥️ Environment
+- OS: Ubuntu 24.04 LTS (Cloud Lab Environment)
+- User: toor
+- Shell: Bash
 
 ---
 
