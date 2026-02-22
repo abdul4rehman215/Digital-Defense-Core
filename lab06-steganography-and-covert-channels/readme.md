@@ -1,14 +1,10 @@
 # 🧪 Lab 6: Steganography and Covert Channels
 
-**Environment:** Ubuntu 24.04.1 LTS (Cloud Lab Environment)  
-**User:** toor  
-**Shell Prompt:** `toor@ip-172-31-10-198:~$`
-
 ---
 
 ## 🎯 Objectives
 
-By the end of this lab, students will be able to:
+By the end of this lab, I was able to:
 
 - Understand fundamental concepts of steganography and LSB encoding
 - Implement image-based steganography using Python
@@ -27,6 +23,9 @@ By the end of this lab, students will be able to:
 ---
 
 ## 🖥️ Lab Environment
+
+**User:** toor  
+**Shell Prompt:** `toor@ip-172-31-10-198:~$`
 
 Pre-configured Ubuntu 24.04 LTS cloud-based Linux environment with:
 
@@ -118,7 +117,7 @@ Create a script to scan multiple images for potential covert channels.
 
 ## ✅ Expected Outcomes
 
-After completing this lab, students will have hands-on experience with:
+After completing this lab, I have hands-on experience with:
 
 - LSB-based steganography
 - Image capacity estimation
